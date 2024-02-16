@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+import Header from "./components/Header/Header";
+
+
+import PhotoContext from "./contexts/PhotoContext";
+import useFetchData from "./hooks/useFetchData";
+import Footer from "./components/Footer/Footer";
+import Loading from "./components/Loading";
+import Error from "./components/Error";
+import MainContent from "./components/MainContent/MainContent";
+
+const App = () => {
+  const {data, loading, error} = useFetchData('https://api.pexels.com/v1/')
+  console.log(data)
+  console.log(error)
+
+  return (<div className="App">
+      <div className="app-container">
+        {loading && <Loading />}
+        {error && <Error message = 'Something went wrong!' />}
+     {  data && <PhotoContext.Provider value = {data}>
+
+        <Header />
+        <MainContent />
+        <Footer /></PhotoContext.Provider>}
+      </div>
     </div>
   );
 }
 
 export default App;
+
