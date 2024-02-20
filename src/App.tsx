@@ -13,8 +13,7 @@ import MainContent from "./components/MainContent/MainContent";
 
 const App = () => {
   const {data, loading, error} = useFetchData('https://api.pexels.com/v1/')
-  console.log(data)
-  console.log(error)
+
 
   return (<div className="App">
       <div className="app-container">

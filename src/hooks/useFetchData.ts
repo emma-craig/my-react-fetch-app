@@ -1,22 +1,24 @@
 import { useEffect, useState } from "react"
-import { responseType, Photo } from "../types/data"
+import { ErrorResponse, PhotosWithTotalResults, createClient } from 'pexels';
 
 const useFetchData = (url: string) => {
-const [data, setData] = useState<Photo[] | null>(null)
+const [data, setData] = useState<ErrorResponse | PhotosWithTotalResults |undefined>()
 const [loading, setLoading] = useState<boolean>(false)
-const [error, setError] = useState<any>()
+const [error, setError] = useState<ErrorResponse | undefined | any>()
 
 useEffect(() => {
     const fetchData = async() =>{
+        const client = createClient('PlHf9iah1R7zAgF7jD3BXNqYXTpjO4YVEqTQoDxM2MKlsdSvX8jNIbc4');
+
     setLoading(true)
    try {
-    const response = await fetch('https://api.pexels.com/v1/search?query=flowers', {
-        headers: {
-            Authorization: `${process.env.API_KEY}`
-    }})  
-    const json: responseType= await response.json()
-    console.log(json)
-   setData(json.photos)
+    const response = await client.photos.search({
+        query: 'flowers',
+        per_page: 20,
+        page: 1
+    })
+
+setData(response)
 } 
 catch (error){
 setError(error)}

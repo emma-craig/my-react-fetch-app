@@ -3,15 +3,9 @@ export interface Photo {
     width: number;
     height: number;
     url: string;
-    title: string;
-    description: string;
-    user: number;
     alt: string;
     avg_color: string;
     liked:boolean;
-    photograper: string;
-    photographer_id: number;
-    photographer_url: string;
     src: {
       landscape: string;
       large: string;
@@ -26,8 +20,12 @@ export interface Photo {
 
 export interface responseType {
     per_page: number;
-    page: string;
-    next_page: string;
+    page: number;
+    next_page: number;
     photos: Photo[];
     total_results: number;
 }
+
+// export type PhotoContextType = {
+//   photos: Photo[]; 
+//     };

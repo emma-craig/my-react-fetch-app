@@ -1,4 +1,7 @@
 import { createContext } from "react";
-import { Photo } from "../types/data";
-const PhotoContext = createContext<Photo[]>([])
+import { ErrorResponse, PhotosWithTotalResults } from "pexels";
+
+const PhotoContext = createContext<ErrorResponse | PhotosWithTotalResults |undefined>(undefined)
+
+
 export default PhotoContext
