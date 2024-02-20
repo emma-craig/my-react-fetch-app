@@ -1,9 +1,13 @@
+import { CircularProgress, Stack } from "@mui/material";
+
 const Loading = () => {
+ 
     return (
-      <div className="loading-container" data-testid="loading">
-        <div>LOADING.......</div>
-      </div>
-    );
-  };
-  
+      <Stack
+        alignItems="center"
+        justifyContent="center"
+      >
+        <CircularProgress />
+      </Stack>
+    )}
   export default Loading;
