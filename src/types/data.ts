@@ -26,6 +26,3 @@ export interface responseType {
     total_results: number;
 }
 
-// export type PhotoContextType = {
-//   photos: Photo[]; 
-//     };
